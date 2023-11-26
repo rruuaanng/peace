@@ -1,7 +1,7 @@
 package org.moon.store
 // 若需要其他数据库支持更换Profile包即可
 
-import org.moon.config.JdbcConfig
+import org.moon.common.config.JdbcConfig
 import slick.jdbc.MySQLProfile.api._
 import slick.jdbc.MySQLProfile.backend.DatabaseDef
 import slick.lifted.AbstractTable

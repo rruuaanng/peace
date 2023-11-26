@@ -1,4 +1,4 @@
-package org.moon.config
+package org.moon.common.config
 
 import com.typesafe.config.{Config, ConfigFactory, ConfigList}
 

@@ -1,6 +1,6 @@
 package org.moon.store
 
-import org.moon.config.JdbcConfig
+import org.moon.common.config.JdbcConfig
 import slick.lifted.{AbstractTable, TableQuery}
 
 import java.sql.DriverManager

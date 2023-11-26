@@ -1,4 +1,4 @@
-package org.moon.config
+package org.moon.common.config
 
 class JdbcConfig(_url: String, _username: String, _passwd: String, _driver: String) {
 
