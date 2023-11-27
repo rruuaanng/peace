@@ -1,8 +1,7 @@
 package org.moon.http
 
-import com.twitter.finagle.Http
 import com.twitter.finagle.http.filter.Cors
-import com.twitter.util.Await
+import com.twitter.finagle.{Http, ListeningServer}
 
 import scala.collection.mutable.ListBuffer
 
@@ -30,15 +29,17 @@ class CorsSetting {
   }
 
   /**
-   * 启动服务
+   * 应用跨域
+   *
+   * @return 服务监听列表
    */
-  def start(): Unit = {
+  def apply(): ListBuffer[ListeningServer] = {
     // 应用跨域设置到指定RESTapi服务
     val servers = corsRests.map(x => {
       val service = new Cors.HttpFilter(setting)
         .andThen(x._1)
       Http.serve(x._2, service)
     })
-    servers.foreach(x => Await.result(x))
+    servers
   }
 }
