@@ -47,19 +47,11 @@
             <version>21.10.0</version>
         </dependency>
 
-
         <dependency>
             <groupId>com.twitter</groupId>
             <artifactId>finagle-netty4_2.12</artifactId>
             <version>21.10.0</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-            <version>3.4.9</version>
-        </dependency>
-
     </dependencies>
 
 </project>
