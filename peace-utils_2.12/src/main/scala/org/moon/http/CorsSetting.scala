@@ -9,7 +9,7 @@ import scala.collection.mutable.ListBuffer
 
 class CorsSetting {
   // 服务列表
-  private val corsRests = ListBuffer[(RestApi, String)]()
+  private val corsRests = ListBuffer[(Server, String)]()
 
   private def setting: Cors.Policy = Cors.Policy(
     allowsOrigin = _ => Some("*"),
@@ -23,7 +23,7 @@ class CorsSetting {
    * @param port    端口
    * @return
    */
-  def add(service: RestApi, port: String): CorsSetting = {
+  def add(service: Server, port: String): CorsSetting = {
     corsRests.append((service, s":$port"))
     this
   }
