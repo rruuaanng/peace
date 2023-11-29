@@ -1,14 +1,6 @@
 package org.moon.common.config
 
-class JdbcConfig(_url: String, _username: String, _passwd: String, _driver: String) {
-
-  private val url = _url
-
-  private val username = _username
-
-  private val passwd = _passwd
-
-  private val driver = _driver
+class JdbcConfig(url: String, username: String, passwd: String, driver: String) {
 
   def getUrl: String = url
 

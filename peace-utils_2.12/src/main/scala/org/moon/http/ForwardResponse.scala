@@ -4,11 +4,7 @@ import com.twitter.finagle.Service
 import com.twitter.finagle.http.{Request, Response}
 import com.twitter.util.Future
 
-class ForwardResponse(_response: Future[Response], _client: Service[Request, Response]) {
-
-  private val response = _response
-
-  private val client = _client
+class ForwardResponse(response: Future[Response], client: Service[Request, Response]) {
 
   def getResponse: Future[Response] = response
 
