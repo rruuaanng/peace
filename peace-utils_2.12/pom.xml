@@ -52,6 +52,18 @@
             <artifactId>finagle-netty4_2.12</artifactId>
             <version>21.10.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.circe</groupId>
+            <artifactId>circe-core_2.12</artifactId>
+            <version>0.14.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.circe</groupId>
+            <artifactId>circe-parser_2.12</artifactId>
+            <version>0.14.0</version>
+        </dependency>
     </dependencies>
 
 </project>
