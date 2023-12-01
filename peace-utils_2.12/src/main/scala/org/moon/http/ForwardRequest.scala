@@ -17,7 +17,7 @@ class ForwardRequest {
    * @param request 请求
    * @return
    */
-  def send(host: String, port: String, request: Request): ForwardRequest = {
+  private def send(host: String, port: String, request: Request): ForwardRequest = {
     val client = Http.newService(s"$host:$port")
     val response = client(request)
     // 等待异步
@@ -25,6 +25,9 @@ class ForwardRequest {
     this.serverResponse = new ForwardResponse(response, client)
     this
   }
+
+  def ->(host: String, port: String, request: Request): ForwardRequest =
+    this.send(host, port, request)
 
   /**
    * 处理请求
