@@ -30,18 +30,27 @@ object NetReq {
    * @param body  报文主体
    * @return
    */
-  private def postReq(adder: String, path: String, body: String): String = {
+  private def Req(adder: String, path: String,
+                  method: String, body: String): String = {
     val client = Http.newService(adder)
-    val request = Request(Method.Get, path)
-    request.setContentString(body)
+    var request: Option[Request] = None
+    // 选择请求方法
+    method match {
+      case "POST" => request = Option(Request(Method.Post, path))
+      case "PUT" => request = Option(Request(Method.Put, path))
+      case "DELETE" => request = Option(Request(Method.Put, path))
+    }
 
-    val future = client(request)
+    request.get.setContentString(body)
+
+    val future = client(request.get)
     val response = Await.result(future)
     response.getContentString()
   }
 
   def +>(adder: String, path: String): String = getReq(adder, path)
 
-  def +>(adder: String, path: String, body: String): String = postReq(adder, path, body)
+  def +>(adder: String, path: String, method: String, body: String): String =
+    Req(adder, path, method, body)
 
 }

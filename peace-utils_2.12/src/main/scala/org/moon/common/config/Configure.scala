@@ -1,6 +1,6 @@
 package org.moon.common.config
 
-import com.typesafe.config.{Config, ConfigFactory, ConfigList}
+import com.typesafe.config.{Config, ConfigException, ConfigFactory, ConfigList}
 
 
 /**
@@ -12,12 +12,7 @@ class Configure(name: String) {
 
   private val configFile: Config = ConfigFactory.load(name)
 
-  /**
-   * 获取Config对象
-   *
-   * @return Config
-   */
-  def getConfig: Config = configFile
+  def getConf: Config = configFile
 
   /**
    * 获取配置文件中的字段信息
@@ -35,7 +30,21 @@ class Configure(name: String) {
    * @param key 字段名
    * @return
    */
-  def getKey(key: String): String = configFile.getString(key)
+  def get(key: String): String = {
+    try {
+      configFile.getString(key)
+    } catch {
+      case _: ConfigException.Missing => ""
+    }
+  }
+
+  def get(key: String, deft: String): String = {
+    try {
+      configFile.getString(key)
+    } catch {
+      case _: ConfigException.Missing => deft
+    }
+  }
 
   /**
    * 获取配置文件中的字段列表
@@ -59,4 +68,6 @@ object Configure {
    * @note 默认读取local.conf
    */
   def apply(name: String = DEFAULT_FILE): Configure = new Configure(name)
+
+  def create(config: String) = new Configure(config)
 }

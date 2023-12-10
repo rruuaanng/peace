@@ -26,7 +26,7 @@ class ForwardRequest {
     this
   }
 
-  def ->(host: String, port: String, request: Request): ForwardRequest =
+  def +>(host: String, port: String, request: Request): ForwardRequest =
     this.send(host, port, request)
 
   /**
@@ -35,7 +35,7 @@ class ForwardRequest {
    * @param f 处理函数
    */
   def process(f: Response => Unit): ForwardRequest = {
-    this.serverResponse.getResponse.map(f)
+    this.serverResponse.getResponse.foreach(f)
     this
   }
 
